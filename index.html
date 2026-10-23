@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1f;--glass:rgba(255,255,255,.055);--line:rgba(255,255,255,.12);--ink:#eef0ff;--mut:#9aa3cf;--a:#2de2c4;--v:#8b5cf6;--r:22px}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 Figtree,system-ui,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-gradient(40% 35% at 20% 20%,rgba(139,92,246,.35),transparent),radial-gradient(35% 30% at 80% 30%,rgba(45,226,196,.22),transparent),radial-gradient(40% 35% at 55% 90%,rgba(139,92,246,.2),transparent);animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(4%,3%) rotate(6deg)}}
+#glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(45,226,196,.13),transparent 65%);transform:translate(-50%,-50%);z-index:-1}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;line-height:1.1}
+a{color:inherit}.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:12px;z-index:9;margin:12px auto 0;max-width:1080px;padding:0 22px}
+header div{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border:1px solid var(--line);background:rgba(10,14,31,.65);backdrop-filter:blur(14px);border-radius:99px}
+header nav{display:flex;gap:18px;font-size:14px;color:var(--mut)}header nav a{text-decoration:none}header nav a:hover{color:var(--a)}
+.logo{font:800 18px 'Bricolage Grotesque'}
+section{padding:70px 0}h2{font-size:clamp(28px,4vw,42px);margin-bottom:28px;letter-spacing:-.02em}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(10px);padding:24px}
+.hero{padding-top:70px}
+.hero h1{font-size:clamp(46px,9vw,112px);font-weight:800;letter-spacing:-.04em;background:linear-gradient(100deg,#fff 20%,var(--a) 55%,var(--v));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:sh 8s linear infinite alternate}
+@keyframes sh{to{background-position:100%}}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px}
+.b1{grid-column:span 4}.b2{grid-column:span 2;padding:0;overflow:hidden;min-height:260px}.b2 img{width:100%;height:100%;object-fit:cover;display:block}
+.b3{grid-column:span 2}.b4{grid-column:span 4}
+.sub{font:500 clamp(20px,3vw,30px) 'Bricolage Grotesque';color:var(--a);margin:14px 0 18px}
+.btn{display:inline-block;padding:11px 22px;border-radius:99px;background:var(--a);color:#06231e;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-size:15px}
+.btn.o{background:none;color:var(--ink);border:1px solid var(--line)}
+.stat{font:800 44px 'Bricolage Grotesque';color:var(--a)}.mut{color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.card{padding:0;overflow:hidden;transition:.3s;display:flex;flex-direction:column}.card:hover{transform:translateY(-5px);border-color:var(--a)}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;display:block;background:#10163a}.card .in{padding:20px;flex:1}
+.card h3{font-size:21px;margin-bottom:6px}.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.tag{font-size:12px;padding:3px 11px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.links{display:flex;gap:14px;margin-top:10px;font-size:14px}.links a{color:var(--a)}
+.tl{border-left:2px solid var(--line);margin-left:10px;padding-left:28px}
+.co{position:relative;margin-bottom:34px}.co:before{content:"";position:absolute;left:-37px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--a);box-shadow:0 0 0 5px rgba(45,226,196,.18)}
+.co>.hd{display:flex;gap:14px;align-items:center;margin-bottom:14px}.co .hd img{width:46px;height:46px;border-radius:12px;object-fit:cover}
+.co h3{font-size:22px}.role{position:relative;padding:0 0 18px 20px;border-left:2px dashed var(--line);margin-left:6px}
+.role:before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--v)}.role:last-child{border-color:transparent;padding-bottom:0}
+.role h4{font-size:17px}.role ul{margin:8px 0 0 18px;color:var(--mut);font-size:15px}
+.sk{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}.sk h3{font-size:18px;margin-bottom:14px}
+.bar{margin-bottom:12px;font-size:14px}.bar i{display:block;height:5px;border-radius:9px;background:rgba(255,255,255,.1);margin-top:5px;overflow:hidden}.bar i b{display:block;height:100%;background:linear-gradient(90deg,var(--v),var(--a));border-radius:9px}
+.pp{margin-bottom:16px}.pp h3{font-size:20px}.pp .meta{color:var(--mut);font-size:14px;margin:6px 0}.st{font-size:12px;padding:3px 12px;border-radius:99px;background:rgba(139,92,246,.25);color:#c9b8ff;float:right;margin-left:10px}
+.pp details summary{cursor:pointer;color:var(--a);font-size:14px;margin-top:8px}.pp details p{margin-top:8px;color:var(--mut);font-size:15px}
+form.c{display:grid;gap:12px;max-width:560px}form.c input,form.c textarea{font:inherit;color:var(--ink);background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:13px 16px;width:100%}
+#modal{position:fixed;inset:0;background:rgba(5,8,20,.8);backdrop-filter:blur(8px);display:none;z-index:20;overflow:auto;padding:40px 16px}
+#modal .glass{max-width:720px;margin:0 auto;background:#12183a}#modal img{width:100%;border-radius:14px;margin-bottom:16px}#modal p{margin-bottom:14px}
+footer{text-align:center;padding:40px;color:var(--mut);font-size:14px}
+#cv{display:none}
+@media print{body>*:not(#cv){display:none!important}#cv{display:block;color:#000;background:#fff;padding:20px;font:13px/1.5 Arial}#cv h1{font-size:26px}#cv h2{font-size:15px;border-bottom:1px solid #999;margin:14px 0 6px;color:#000}body:before{display:none}}
+@media(max-width:760px){header nav{display:none}.b1,.b2,.b3,.b4{grid-column:span 6}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="glow"></div>
+<header><div><span class="logo" id="lg">Portfolio</span><nav><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#research">Research</a><a href="/blog">Blog</a><a href="#contact">Contact</a></nav></div></header>
+<div class="wrap">
+<section class="hero"><h1 id="nm">Hello.</h1><p class="sub" id="tt"></p>
+<div class="bento"><div class="glass b1"><p id="bio" style="font-size:18px"></p><p style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#contact">Contact me</a><button class="btn o" onclick="printCV()">Download CV</button></p></div>
+<div class="glass b2" id="ph"></div>
+<div class="glass b3"><div class="stat" id="s1">0</div><div class="mut">Projects</div><div class="stat" id="s2" style="margin-top:12px">0</div><div class="mut">Research papers</div></div>
+<div class="glass b4" id="soc"><h3 style="margin-bottom:10px">Find me</h3></div></div></section>
+<section id="projects"><h2>Projects</h2><div class="grid" id="pj"></div></section>
+<section id="experience"><h2>Experience</h2><div class="tl" id="ex"></div></section>
+<section id="education"><h2>Education</h2><div class="tl" id="ed"></div></section>
+<section id="skills"><h2>Skills</h2><div class="sk" id="sk"></div></section>
+<section id="research"><h2>Research</h2><div id="pp"></div></section>
+<section id="blog"><h2>Writing</h2><div class="grid" id="bl"></div><p style="margin-top:24px"><a class="btn o" href="/blog">All posts</a></p></section>
+<section id="contact"><h2>Let's talk</h2><form class="c" id="cf"><input name="name" placeholder="Your name" required><input name="email" type="email" placeholder="Your email" required><textarea name="message" rows="5" placeholder="Message" required></textarea><div><button class="btn">Send message</button> <span id="cs" class="mut"></span></div></form></section>
+</div><footer id="ft"></footer>
+<div id="modal" onclick="if(event.target==this)this.style.display='none'"><div class="glass" id="mb"></div></div>
+<div id="cv"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="config.js"></script>
+<script>
+const sb=supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_KEY),$=s=>document.querySelector(s);
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const get=async(t,o='sort',asc=true)=>(await sb.from(t).select('*').order(o,{ascending:asc})).data||[];
+const csv=s=>(s||'').split(',').map(x=>x.trim()).filter(Boolean);
+const shot=u=>`https://api.microlink.io/?url=${encodeURIComponent(u)}&screenshot=true&meta=false&embed=screenshot.url`;
+const mo=s=>{if(!s)return null;const[y,m]=s.split('-');return +y*12+(+m||1)};
+const dur=(a,b)=>{const s=mo(a),e=b?mo(b):new Date().getFullYear()*12+new Date().getMonth()+1;if(!s)return'';const d=e-s+1,y=Math.floor(d/12),m=d%12;return[y?y+' yr'+(y>1?'s':''):'',m?m+' mo'+(m>1?'s':''):''].filter(Boolean).join(' ')};
+const rng=(a,b)=>`${a||''} – ${b||'Present'}`;
+const lis=s=>(s||'').split('\n').filter(x=>x.trim()).map(x=>`<li>${E(x.replace(/^[-•]\s*/,''))}</li>`).join('');
+let D={};
+(async()=>{
+const[p,pj,ex,ed,sk,pp,bl]=await Promise.all([sb.from('profile').select('*').eq('id',1).maybeSingle().then(r=>r.data||{}),get('projects'),get('experience'),get('education'),get('skills'),get('papers'),get('posts','date',false)]);
+D={p,pj,ex,ed,sk,pp};document.title=(p.name||'Portfolio')+(p.title?' · '+p.title:'');
+$('#lg').textContent=p.name||'Portfolio';$('#nm').textContent=p.name||'Hello.';$('#tt').textContent=p.title||'';$('#bio').textContent=p.bio||'';
+$('#ph').innerHTML=p.photo?`<img src="${E(p.photo)}" alt="">`:'';if(!p.photo)$('.b2').style.display='none';
+$('#soc').innerHTML+=[['Email',p.email&&'mailto:'+p.email],['GitHub',p.github],['LinkedIn',p.linkedin]].filter(x=>x[1]).map(x=>`<a class="btn o" style="margin-right:8px" href="${E(x[1])}" target="_blank" rel="noopener">${x[0]}</a>`).join('')+(p.location?`<p class="mut" style="margin-top:12px">${E(p.location)}</p>`:'');
+$('#s1').textContent=pj.length;$('#s2').textContent=pp.length;
+$('#pj').innerHTML=[...pj].sort((a,b)=>b.featured-a.featured).map(x=>`<article class="glass card"><img loading="lazy" src="${E(x.image||(x.url?shot(x.url):''))}" alt=""><div class="in"><h3>${E(x.title)}</h3><p class="mut">${E(x.description)}</p><div class="tags">${csv(x.tech).map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div><div class="links">${x.url?`<a href="${E(x.url)}" target="_blank" rel="noopener">Live site</a>`:''}${x.github?`<a href="${E(x.github)}" target="_blank" rel="noopener">Code</a>`:''}</div></div></article>`).join('')||'<p class="mut">Coming soon.</p>';
+const g={};ex.forEach(r=>(g[r.company]=g[r.company]||[]).push(r));
+$('#ex').innerHTML=Object.entries(g).map(([c,rs])=>{const st=rs.map(r=>r.start).filter(Boolean).sort()[0],en=rs.some(r=>!r.end)?'':rs.map(r=>r.end).sort().pop();
+return `<div class="co"><div class="hd">${rs[0].logo?`<img src="${E(rs[0].logo)}" alt="">`:''}<div><h3>${E(c)}</h3><span class="mut">${rng(st,en)} · ${dur(st,en)}</span></div></div>${rs.map(r=>`<div class="role"><h4>${E(r.role)}</h4><span class="mut" style="font-size:14px">${E(r.type||'')} ${r.type?'· ':''}${rng(r.start,r.end)} · ${dur(r.start,r.end)}</span><ul>${lis(r.description)}</ul></div>`).join('')}</div>`}).join('');
+$('#ed').innerHTML=ed.map(r=>`<div class="co"><h3>${E(r.school)}</h3><div>${E(r.degree)}</div><span class="mut">${rng(r.start,r.end)}${r.result?' · '+E(r.result):''}</span><p class="mut" style="margin-top:6px">${E(r.description)}</p></div>`).join('');
+const sc={};sk.forEach(s=>(sc[s.category||'Skills']=sc[s.category||'Skills']||[]).push(s));
+$('#sk').innerHTML=Object.entries(sc).map(([c,l])=>`<div class="glass"><h3>${E(c)}</h3>${l.map(s=>`<div class="bar">${E(s.name)}<i><b style="width:${+s.level||0}%"></b></i></div>`).join('')}</div>`).join('');
+$('#pp').innerHTML=pp.map((x,i)=>`<div class="glass pp"><span class="st">${E(x.status||'')}</span><h3>${E(x.title)}</h3><div class="meta">${E(x.authors)}<br>${E(x.venue)} ${E(x.year)}</div><div class="tags">${csv(x.tags).map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div><div class="links">${x.pdf?`<a href="${E(x.pdf)}" target="_blank">PDF</a>`:''}${x.doi?`<a href="${E(x.doi.startsWith('http')?x.doi:'https://doi.org/'+x.doi)}" target="_blank">DOI</a>`:''}<a href="#" onclick="cite(${i});return false">Copy citation</a></div>${x.abstract?`<details><summary>Abstract</summary><p>${E(x.abstract)}</p></details>`:''}</div>`).join('')||'<p class="mut">Nothing published yet.</p>';
+$('#bl').innerHTML=bl.slice(0,3).map(x=>`<a class="glass card" style="text-decoration:none" href="/blog/${E(x.slug||x.id)}">${x.cover?`<img loading="lazy" src="${E(x.cover)}" alt="">`:''}<div class="in"><span class="mut" style="font-size:13px">${E(x.date)}</span><h3>${E(x.title)}</h3><p class="mut">${E(x.excerpt)}</p></div></a>`).join('')||'<p class="mut">First post coming soon.</p>';
+$('#ft').textContent='© '+new Date().getFullYear()+' '+(p.name||'');
+})();
+function cite(i){const x=D.pp[i];navigator.clipboard.writeText(`${x.authors}. (${x.year}). ${x.title}. ${x.venue}.`+(x.doi?` ${x.doi}`:''));alert('Citation copied')}
+function printCV(){const{p,ex,ed,sk,pp,pj}=D;$('#cv').innerHTML=`<h1>${E(p.name)}</h1><div>${E(p.title)} · ${[p.email,p.location,p.linkedin,p.github].filter(Boolean).map(E).join(' · ')}</div><p>${E(p.bio)}</p>
+<h2>Experience</h2>${ex.map(r=>`<p><b>${E(r.role)}</b>, ${E(r.company)} (${rng(r.start,r.end)})<ul>${lis(r.description)}</ul></p>`).join('')}
+<h2>Education</h2>${ed.map(r=>`<p><b>${E(r.degree)}</b>, ${E(r.school)} (${rng(r.start,r.end)}) ${E(r.result||'')}</p>`).join('')}
+<h2>Skills</h2><p>${sk.map(s=>E(s.name)).join(', ')}</p>
+<h2>Research</h2>${pp.map(x=>`<p>${E(x.authors)} (${E(x.year)}). ${E(x.title)}. <i>${E(x.venue)}</i></p>`).join('')}
+<h2>Projects</h2>${pj.map(x=>`<p><b>${E(x.title)}</b> – ${E(x.description)} ${E(x.url||'')}</p>`).join('')}`;window.print()}
+$('#cf').onsubmit=async e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));const{error}=await sb.from('messages').insert(o);$('#cs').textContent=error?'Failed. Abar try koro.':'Sent. Thanks!';if(!error)e.target.reset()};
+addEventListener('pointermove',e=>{$('#glow').style.left=e.clientX+'px';$('#glow').style.top=e.clientY+'px'});
+</script></body></html>

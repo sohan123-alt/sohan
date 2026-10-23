@@ -1,0 +1,7 @@
+// Ekhane nijer value boshao
+window.CFG={
+  SUPABASE_URL:"https://YOUR-PROJECT.supabase.co",
+  SUPABASE_KEY:"YOUR-ANON-PUBLIC-KEY",
+  CLOUD_NAME:"YOUR-CLOUDINARY-CLOUD-NAME",
+  UPLOAD_PRESET:"YOUR-UNSIGNED-PRESET"
+};

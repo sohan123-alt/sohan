@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blog</title>
+<meta name="description" id="md-d" content=""><meta property="og:title" id="og-t" content=""><meta property="og:image" id="og-i" content=""><meta property="og:description" id="og-d" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1f;--glass:rgba(255,255,255,.055);--line:rgba(255,255,255,.12);--ink:#eef0ff;--mut:#9aa3cf;--a:#2de2c4;--v:#8b5cf6;--r:22px}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:16px/1.65 Figtree,system-ui,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-gradient(40% 35% at 20% 20%,rgba(139,92,246,.35),transparent),radial-gradient(35% 30% at 80% 30%,rgba(45,226,196,.22),transparent);animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(4%,3%) rotate(6deg)}}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;line-height:1.12;letter-spacing:-.02em}a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:12px;z-index:9;max-width:1080px;margin:12px auto 0;padding:0 22px}
+header div{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;border:1px solid var(--line);background:rgba(10,14,31,.65);backdrop-filter:blur(14px);border-radius:99px}
+header nav{display:flex;gap:18px;font-size:14px;color:var(--mut)}header a{text-decoration:none}header nav a:hover{color:var(--a)}.logo{font:800 18px 'Bricolage Grotesque'}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(10px)}
+.mut{color:var(--mut)}.tag{font-size:12px;padding:3px 11px;border-radius:99px;border:1px solid var(--line);color:var(--mut);background:none;cursor:pointer;font-family:inherit}
+.tag.on,.tag:hover{border-color:var(--a);color:var(--a)}.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.btn{display:inline-block;padding:10px 20px;border-radius:99px;background:var(--a);color:#06231e;font-weight:600;text-decoration:none;border:0;cursor:pointer;font:600 14px Figtree}.btn.o{background:none;color:var(--ink);border:1px solid var(--line)}
+.top{padding:70px 0 30px}.top h1{font-size:clamp(40px,7vw,80px);font-weight:800}.top p{max-width:520px;margin-top:12px}
+.tools{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:26px 0}
+#q{font:inherit;color:var(--ink);background:var(--glass);border:1px solid var(--line);border-radius:99px;padding:10px 18px;min-width:240px}
+.feat{display:grid;grid-template-columns:1.2fr 1fr;overflow:hidden;text-decoration:none;margin-bottom:22px;transition:.3s}.feat:hover{border-color:var(--a)}
+.feat img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block}.feat .in{padding:32px;align-self:center}.feat h2{font-size:clamp(26px,3.5vw,38px);margin:8px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;padding-bottom:70px}
+.card{overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:.3s}.card:hover{transform:translateY(-5px);border-color:var(--a)}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}.card .in{padding:20px}.card h3{font-size:21px;margin:6px 0}
+.meta{font-size:13px;color:var(--mut)}
+article.post{max-width:700px;margin:0 auto;padding:60px 22px 40px}
+.post h1{font-size:clamp(34px,6vw,56px);font-weight:800;margin:14px 0}.post .cover{width:100%;border-radius:var(--r);margin:28px 0;display:block}
+.prose{font:400 19px/1.85 Newsreader,Georgia,serif;color:#dfe3ff}.prose>*+*{margin-top:1.2em}
+.prose h2,.prose h3{font-family:'Bricolage Grotesque';color:#fff;margin-top:1.8em}.prose h2{font-size:30px}.prose h3{font-size:23px}
+.prose a{color:var(--a)}.prose img{max-width:100%;border-radius:14px}.prose ul,.prose ol{padding-left:1.4em}.prose li+li{margin-top:.4em}
+.prose blockquote{border-left:3px solid var(--v);padding:4px 0 4px 20px;color:var(--mut);font-style:italic}
+.prose code{font:15px ui-monospace,Menlo,monospace;background:rgba(255,255,255,.09);padding:2px 6px;border-radius:6px}
+.prose pre{background:#0d1230;border:1px solid var(--line);border-radius:14px;padding:16px;overflow:auto}.prose pre code{background:none;padding:0}
+.prose hr{border:0;border-top:1px solid var(--line)}.prose table{border-collapse:collapse;width:100%;font-size:16px}.prose td,.prose th{border:1px solid var(--line);padding:8px 12px}
+.share{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:40px 0;padding-top:24px;border-top:1px solid var(--line)}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}.pn a{padding:16px 20px;text-decoration:none}.pn a:hover{border-color:var(--a)}.pn b{display:block;font-family:'Bricolage Grotesque';font-size:17px;margin-top:4px}
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--v),var(--a));width:0;z-index:30}
+footer{text-align:center;padding:40px;color:var(--mut);font-size:14px}
+@media(max-width:760px){header nav a:not(:last-child){display:none}.feat{grid-template-columns:1fr}.pn{grid-template-columns:1fr}.prose{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<div id="bar"></div>
+<header><div><a class="logo" href="/" id="lg">Home</a><nav><a href="/">Home</a><a href="/#projects">Projects</a><a href="/blog">Blog</a><a href="/#contact">Contact</a></nav></div></header>
+<main id="app"></main><footer id="ft"></footer>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+const sb=supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_KEY),$=s=>document.querySelector(s);
+const E=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const csv=s=>(s||'').split(',').map(x=>x.trim()).filter(Boolean);
+const rt=b=>Math.max(1,Math.round((b||'').split(/\s+/).length/200))+' min read';
+const dt=d=>{const x=new Date(d);return isNaN(x)?(d||''):x.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})};
+const href=x=>'/blog/'+encodeURIComponent(x.slug||x.id);
+const parts=location.pathname.split('/').filter(Boolean);
+const slug=parts[0]=='blog'&&parts[1]?decodeURIComponent(parts[1]):new URLSearchParams(location.search).get('p');
+let P=[],tag='',term='';
+(async()=>{
+const[{data:posts},{data:pr}]=await Promise.all([sb.from('posts').select('*').order('date',{ascending:false}),sb.from('profile').select('name').eq('id',1).maybeSingle()]);
+P=posts||[];const nm=pr?.name||'';$('#lg').textContent=nm||'Home';$('#ft').textContent='© '+new Date().getFullYear()+' '+nm;
+slug?single(nm):list(nm);
+})();
+function list(nm){document.title='Blog'+(nm?' · '+nm:'');const tags=[...new Set(P.flatMap(p=>csv(p.tags)))];
+$('#app').innerHTML=`<div class="wrap"><div class="top"><h1>Blog</h1><p class="mut">Notes on what I build, research, and learn.</p></div>
+<div class="tools"><input id="q" type="search" placeholder="Search posts"><div class="tags" style="margin:0" id="tg">${tags.length?['All',...tags].map(t=>`<button class="tag ${t=='All'?'on':''}" data-t="${E(t)}">${E(t)}</button>`).join(''):''}</div></div><div id="ls"></div></div>`;
+$('#q').oninput=e=>{term=e.target.value.toLowerCase();draw()};
+$('#tg').onclick=e=>{const t=e.target.dataset.t;if(!t)return;tag=t=='All'?'':t;document.querySelectorAll('#tg .tag').forEach(b=>b.classList.toggle('on',b.dataset.t==t));draw()};draw()}
+function draw(){const r=P.filter(p=>(!tag||csv(p.tags).includes(tag))&&(!term||(p.title+' '+p.excerpt+' '+p.tags).toLowerCase().includes(term)));
+if(!r.length){$('#ls').innerHTML='<p class="mut" style="padding-bottom:70px">'+(P.length?'Kono post paoa jay ni. Onno kichu search koro.':'First post coming soon.')+'</p>';return}
+const f=!tag&&!term?r[0]:null,rest=f?r.slice(1):r;
+$('#ls').innerHTML=(f?`<a class="glass feat" href="${href(f)}">${f.cover?`<img src="${E(f.cover)}" alt="">`:'<div></div>'}<div class="in"><span class="meta">${dt(f.date)} · ${rt(f.body)}</span><h2>${E(f.title)}</h2><p class="mut">${E(f.excerpt)}</p><div class="tags">${csv(f.tags).map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div></div></a>`:'')+
+`<div class="grid">${rest.map(x=>`<a class="glass card" href="${href(x)}">${x.cover?`<img loading="lazy" src="${E(x.cover)}" alt="">`:''}<div class="in"><span class="meta">${dt(x.date)} · ${rt(x.body)}</span><h3>${E(x.title)}</h3><p class="mut">${E(x.excerpt)}</p><div class="tags">${csv(x.tags).map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div></div></a>`).join('')}</div>`}
+function single(nm){const i=P.findIndex(p=>p.slug==slug||String(p.id)==slug),x=P[i];
+if(!x){$('#app').innerHTML='<article class="post"><h1>Post paoa jay ni</h1><p class="mut" style="margin-top:12px">Link ta bhul ba post ta ekhono publish hoy ni.</p><p style="margin-top:20px"><a class="btn" href="/blog">Sob post dekho</a></p></article>';return}
+document.title=x.title+(nm?' · '+nm:'');$('#md-d').content=$('#og-d').content=x.excerpt||'';$('#og-t').content=x.title;$('#og-i').content=x.cover||'';
+const nx=P[i-1],pv=P[i+1],url=location.href;
+$('#app').innerHTML=`<article class="post"><a class="mut" href="/blog" style="text-decoration:none">← All posts</a><h1>${E(x.title)}</h1><div class="meta">${dt(x.date)} · ${rt(x.body)}</div><div class="tags">${csv(x.tags).map(t=>`<span class="tag">${E(t)}</span>`).join('')}</div>${x.cover?`<img class="cover" src="${E(x.cover)}" alt="">`:''}<div class="prose">${DOMPurify.sanitize(marked.parse(x.body||''))}</div>
+<div class="share"><span class="mut">Share</span><button class="btn o" id="cp">Copy link</button><a class="btn o" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}">LinkedIn</a><a class="btn o" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(x.title)}">X</a></div>
+<div class="pn">${pv?`<a class="glass" href="${href(pv)}"><span class="meta">Older</span><b>${E(pv.title)}</b></a>`:'<span></span>'}${nx?`<a class="glass" href="${href(nx)}" style="text-align:right"><span class="meta">Newer</span><b>${E(nx.title)}</b></a>`:''}</div></article>`;
+$('#cp').onclick=e=>{navigator.clipboard.writeText(url);e.target.textContent='Copied'};
+addEventListener('scroll',()=>{const d=document.documentElement;$('#bar').style.width=d.scrollTop/(d.scrollHeight-d.clientHeight)*100+'%'})}
+</script></body></html>

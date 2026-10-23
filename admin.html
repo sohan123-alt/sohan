@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title>
+<style>
+:root{--bg:#0b1020;--card:#151b33;--line:#273055;--ink:#eef0ff;--mut:#98a0c8;--a:#2de2c4;--v:#8b5cf6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}
+input,textarea,select,button{font:inherit;color:var(--ink);background:#0e1430;border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+button{cursor:pointer;width:auto;background:var(--v);border:0;font-weight:600}button.g{background:#0e1430;border:1px solid var(--line)}button.d{background:#7f1d3a}
+#login{max-width:340px;margin:18vh auto;display:grid;gap:10px;padding:20px}
+#app{display:none;grid-template-columns:200px 1fr;min-height:100vh}
+nav{border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+nav button{text-align:left;background:none;border:0;color:var(--mut)}nav button.on{background:var(--card);color:var(--a)}
+main{padding:24px;max-width:820px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+label{display:block;color:var(--mut);font-size:13px;margin:10px 0 4px}.row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+.row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.acts{display:flex;gap:6px}img.pv{height:60px;border-radius:8px;margin-top:6px;display:block}
+@media(max-width:700px){#app{grid-template-columns:1fr}nav{position:static;height:auto;flex-direction:row;flex-wrap:wrap;border:0}}
+
+.tb{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}.tb button{padding:6px 12px}#pvw{border:1px solid var(--line);border-radius:10px;padding:12px;max-height:360px;overflow:auto}#pvw img{max-width:100%}#pvw:empty:before{content:"Preview ekhane dekhabe";color:var(--mut)}
+</style></head><body>
+<form id="login"><h2>Admin</h2><input id="em" type="email" placeholder="Email" required><input id="pw" type="password" placeholder="Password" required><button>Log in</button><small id="err" style="color:#ff8aa5"></small></form>
+<div id="app"><nav id="nav"></nav><main><div class="card"><h2 id="ttl"></h2><form id="f"></form></div><div class="card" id="list"></div></main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script><script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script><script src="config.js"></script>
+<script>
+const sb=supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_KEY),$=s=>document.querySelector(s);
+const T={
+profile:{single:1,f:[['name'],['title'],['bio','area'],['photo','img'],['email'],['github'],['linkedin'],['location']]},
+projects:{f:[['title'],['url','text','Vercel / live URL (screenshot auto ashbe)'],['github'],['image','img','Custom image (optional)'],['description','area'],['tech','text','Tech (comma diye)'],['featured','check'],['sort','num']]},
+experience:{f:[['company'],['logo','img'],['role','text','Role / Promotion title'],['type','text','Full-time / Intern...'],['start','text','Start (2023-01)'],['end','text','End (khali = Present)'],['description','area','Description (prottek line = ekta bullet)'],['sort','num']]},
+education:{f:[['school'],['degree'],['start'],['end'],['result','text','Result / CGPA'],['description','area'],['sort','num']]},
+skills:{f:[['name'],['category','text','Frontend / Backend / Tools'],['level','num','Level (0-100)'],['sort','num']]},
+papers:{f:[['title'],['authors'],['venue','text','Journal / Conference'],['year'],['status','text','Published / Under Review / Preprint'],['abstract','area'],['pdf','file','PDF'],['doi'],['tags','text','Tags (comma diye)'],['sort','num']]},
+posts:{f:[['title'],['slug','text','URL slug (khali rakhle title theke auto)'],['cover','img','Cover image'],['excerpt','area','Short summary (SEO description)'],['tags','text','Tags (comma diye)'],['body','md','Write your post (Markdown)'],['date','text','Date (2026-10-23)'],['published','check','Publish (untick = draft)']]},
+messages:{ro:1,f:[]}};
+let cur='projects',edit=null;
+const cap=s=>s[0].toUpperCase()+s.slice(1);
+$('#login').onsubmit=async e=>{e.preventDefault();const{error}=await sb.auth.signInWithPassword({email:$('#em').value,password:$('#pw').value});if(error)$('#err').textContent=error.message;else boot()};
+async function boot(){const{data}=await sb.auth.getSession();if(!data.session)return;$('#login').style.display='none';$('#app').style.display='grid';
+$('#nav').innerHTML=Object.keys(T).map(k=>`<button data-k="${k}">${cap(k)}</button>`).join('')+'<button class="g" onclick="sb.auth.signOut().then(()=>location.reload())">Log out</button>';
+$('#nav').onclick=e=>{if(e.target.dataset.k)go(e.target.dataset.k)};go(cur)}
+async function go(k){cur=k;edit=null;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.k==k));$('#ttl').textContent=cap(k);
+const{data}=await sb.from(k).select('*').order('id',{ascending:false});window.rows=data||[];
+if(T[k].single){edit=rows.find(r=>r.id==1)||{}}form();list()}
+function form(){form0();if($('#md'))pv()}
+function form0(){const c=T[cur];if(c.ro){$('#f').innerHTML='';return}const v=edit||{};
+$('#f').innerHTML=c.f.map(([n,t='text',l])=>{const lb=`<label>${l||cap(n)}</label>`,val=v[n]??'';
+if(t=='md')return lb+`<div class="tb">${[['B','**'],['I','_'],['H2','## '],['Quote','> '],['List','- '],['Code','code'],['Link','link'],['Image','img']].map(([a,b])=>`<button type="button" class="g" onclick="mk('${b}')">${a}</button>`).join('')}<input type="file" id="mi" accept="image/*" style="display:none" onchange="mi(this)"></div><textarea name="${n}" id="md" rows="16" oninput="pv()">${val}</textarea><label>Live preview</label><div id="pvw"></div>`;
+if(t=='area')return lb+`<textarea name="${n}" rows="4">${val}</textarea>`;
+if(t=='check')return `<label><input type="checkbox" name="${n}" style="width:auto" ${val?'checked':''}> ${l||cap(n)}</label>`;
+if(t=='num')return lb+`<input type="number" name="${n}" value="${val||0}">`;
+if(t=='img'||t=='file')return lb+`<input type="hidden" name="${n}" value="${val}"><input type="file" ${t=='img'?'accept="image/*"':''} onchange="up(this)">${val&&t=='img'?`<img class="pv" src="${val}">`:val?`<small>${val}</small>`:''}`;
+return lb+`<input name="${n}" value="${String(val).replace(/"/g,'&quot;')}">`}).join('')+`<p><button id="sv">${edit&&edit.id?'Save changes':'Add'}</button> ${edit&&edit.id&&!c.single?'<button type="button" class="g" onclick="edit=null;form()">Cancel</button>':''} <small id="st"></small></p>`}
+async function up(inp){const f=inp.files[0];if(!f)return;const st=$('#st')||inp;st.textContent='Uploading...';const fd=new FormData();fd.append('file',f);fd.append('upload_preset',CFG.UPLOAD_PRESET);
+const r=await fetch(`https://api.cloudinary.com/v1_1/${CFG.CLOUD_NAME}/auto/upload`,{method:'POST',body:fd}).then(r=>r.json());
+if(r.secure_url){inp.previousElementSibling.value=r.secure_url;st.textContent='Uploaded. Ekhon Save koro.'}else st.textContent='Upload failed: '+(r.error?.message||'')}
+$('#f').onsubmit=async e=>{e.preventDefault();const o={};new FormData($('#f')).forEach((v,k)=>o[k]=v);
+T[cur].f.forEach(([n,t])=>{if(t=='check')o[n]=!!$(`[name=${n}]`).checked;if(t=='num')o[n]=+o[n]||0});
+if(cur=='posts'){o.slug=(o.slug||o.title).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'post-'+Date.now();o.date=o.date||new Date().toISOString().slice(0,10)}
+let q=sb.from(cur);if(T[cur].single)q=q.upsert({...o,id:1});else if(edit&&edit.id)q=q.update(o).eq('id',edit.id);else q=q.insert(o);
+const{error}=await q;if(error)return $('#st').textContent=error.message;go(cur)};
+function list(){const c=T[cur];if(c.single){$('#list').style.display='none';return}$('#list').style.display='block';
+$('#list').innerHTML=rows.length?rows.map(r=>`<div class="row"><span>${r.title||r.name||r.company&&r.company+' · '+(r.role||'')||r.school||r.message}${cur=='posts'&&!r.published?' [DRAFT]':''}${r.email&&c.ro?' ('+r.email+')':''}</span><div class="acts">${c.ro?'':`<button class="g" onclick="edit=rows.find(x=>x.id==${r.id});form();scrollTo(0,0)">Edit</button>`}<button class="d" onclick="del(${r.id})">Delete</button></div></div>`).join(''):'<small>Kichu nei. Upor theke add koro.</small>'}
+async function del(id){if(confirm('Delete korbe?')){await sb.from(cur).delete().eq('id',id);go(cur)}}
+const pv=()=>$('#pvw').innerHTML=DOMPurify.sanitize(marked.parse($('#md').value));
+function mk(k){const t=$('#md'),s=t.selectionStart,e=t.selectionEnd,x=t.value.slice(s,e);if(k=='img')return $('#mi').click();let r;
+if(k=='**')r='**'+(x||'bold')+'**';else if(k=='_')r='_'+(x||'italic')+'_';else if(k=='code')r='`'+(x||'code')+'`';else if(k=='link')r='['+(x||'text')+']('+(prompt('URL')||'#')+')';else r='\n'+k+(x||'text')+'\n';
+t.setRangeText(r,s,e,'end');t.focus();pv()}
+async function mi(inp){const f=inp.files[0];if(!f)return;const fd=new FormData();fd.append('file',f);fd.append('upload_preset',CFG.UPLOAD_PRESET);$('#st').textContent='Uploading...';
+const r=await fetch(`https://api.cloudinary.com/v1_1/${CFG.CLOUD_NAME}/auto/upload`,{method:'POST',body:fd}).then(r=>r.json());
+if(r.secure_url){const t=$('#md');t.setRangeText('\n![]('+r.secure_url+')\n',t.selectionStart,t.selectionEnd,'end');pv();$('#st').textContent='Image added.'}else $('#st').textContent='Upload failed';inp.value=''}
+boot();
+</script></body></html>
